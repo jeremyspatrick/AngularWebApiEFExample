@@ -1,0 +1,141 @@
+﻿{
+  "version": 1,
+  "collections": [
+    {
+      "id": "5029dfa4-0685-68ad-4a21-fcfa23d088f9",
+      "name": "Roles",
+      "timestamp": 1451098606339,
+      "requests": [
+        {
+          "collectionId": "5029dfa4-0685-68ad-4a21-fcfa23d088f9",
+          "id": "01ca3d54-5296-9153-3a62-0a17aff2c8c2",
+          "name": "GetRoles",
+          "description": "",
+          "url": "http://localhost/api/Role/GetRoles",
+          "method": "POST",
+          "headers": "Content-Type: application/json\nsession: xqkFtPjXv0Lp9g1AkgsgeMTPWLIXOQRu1JYwZMrD6toNhIMA2whbgyAZifvHaVBH\n",
+          "data": "{\n  \"UserId\" : \"16\"\n}",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "version": 2,
+          "time": 1451789979573
+        },
+        {
+          "collectionId": "5029dfa4-0685-68ad-4a21-fcfa23d088f9",
+          "id": "29fd6d5c-3115-f31c-2b88-27525d36dc05",
+          "name": "DeleteRole",
+          "description": "",
+          "url": "http://localhost/api/Role/DeleteRole",
+          "method": "POST",
+          "headers": "Content-Type: application/json\nsession: xqkFtPjXv0Lp9g1AkgsgeMTPWLIXOQRu1JYwZMrD6toNhIMA2whbgyAZifvHaVBH\n",
+          "data": "{\"user\":{\n  \"UserId\" : \"16\"\n},\n \"role\" : {\"RoleId\":\"1\"}\n}",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "version": 2,
+          "time": 1451789984673
+        },
+        {
+          "collectionId": "5029dfa4-0685-68ad-4a21-fcfa23d088f9",
+          "id": "fad8fe7e-1326-e458-3314-a96ad599cc59",
+          "name": "AddRole",
+          "description": "",
+          "url": "http://localhost/api/Role/AddRole",
+          "method": "POST",
+          "headers": "Content-Type: application/json\nsession: xqkFtPjXv0Lp9g1AkgsgeMTPWLIXOQRu1JYwZMrD6toNhIMA2whbgyAZifvHaVBH\n",
+          "data": "{\"user\":{\n  \"UserId\" : \"16\"\n},\n \"role\" : {\"RoleType\":\"3\"}\n}",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "version": 2,
+          "time": 1451789988971
+        }
+      ]
+    },
+    {
+      "id": "69aaf17f-9ba3-b47a-133d-23dddc4173cb",
+      "name": "User",
+      "timestamp": 1451098593188,
+      "requests": [
+        {
+          "collectionId": "69aaf17f-9ba3-b47a-133d-23dddc4173cb",
+          "id": "21d35bc2-82aa-ba4a-6bbe-72e4d39cb4a3",
+          "name": "Registration",
+          "description": "",
+          "url": "http://localhost/api/User/Registration",
+          "method": "POST",
+          "headers": "Content-Type: application/json\n",
+          "data": "{\n  \"Username\" : \"dude\", \n  \"Password\" : \"notmypassword\", \n  \"Email\" : \"notmybag@baby.com\",\n  \"UserDetail\": \n  {\n    \"Firstname\" : \"Jeremy\", \n    \"Lastname\" : \"Patrick\",\n    \"Street\" : \"Jeremy\", \n    \"City\" : \"Patrick\",\n    \"State\" : \"Jeremy\", \n    \"Zip\" : \"Patrick\"\n  }\n\n}",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "version": 2
+        },
+        
+        {
+          "collectionId": "69aaf17f-9ba3-b47a-133d-23dddc4173cb",
+          "id": "4f1fb7c0-8a44-33c5-42b0-d5deabbc6d9e",
+          "name": "GetAUserWithDetail",
+          "description": "",
+          "url": "http://localhost/api/User/GetAUserWithDetail",
+          "method": "GET",
+          "headers": "Content-Type: application/json\n",
+          "data": "{\n  \"Username\" : \"dude\", \n  \"Password\" : \"notmypassword\", \n  \"Email\" : \"notmybag@baby.com\",\n  \"UserDetail\": \n  {\n    \"Firstname\" : \"Jeremy\", \n    \"Lastname\" : \"Patrick\",\n    \"Street\" : \"Jeremy\", \n    \"City\" : \"Patrick\",\n    \"State\" : \"Jeremy\", \n    \"Zip\" : \"Patrick\"\n  }\n\n}",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "responses": [ ],
+          "version": 2
+        },
+        {
+          "collectionId": "69aaf17f-9ba3-b47a-133d-23dddc4173cb",
+          "id": "7023d7e6-c7ad-55bb-2f49-5ef491da61cb",
+          "name": "GetAllUsers",
+          "description": "",
+          "url": "http://localhost/api/User/GetAllUsers",
+          "method": "POST",
+          "headers": "Content-Type: application/json\nSession: wYxjC1ILIOsyvTX4a6KXCKPxEZPT2BXi5O5gTpEIRUvdCqcW2B9fTPmnIm5RWU1j\n",
+          "data": "",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "version": 2,
+          "time": 1451829003472
+        },
+        {
+          "collectionId": "69aaf17f-9ba3-b47a-133d-23dddc4173cb",
+          "id": "7d237532-29e9-d85c-2b0f-d5f8cc687f8d",
+          "name": "GetAUser",
+          "description": "",
+          "url": "http://localhost/api/User/GetAUser",
+          "method": "GET",
+          "headers": "Content-Type: application/json\nSession: BylAYJDjhSNloB6UmedBs4oqWJrtf7KYxoeODvSZ9CtrbNq8vL493H2IbMrxwmXi\n",
+          "data": "{\n  \"Username\" : \"newdude\", \n  \"Password\" : \"mypassword\", \n  \"Email\" : \"notmybag@baby.com\",\n  \"UserDetail\": \n  {\n    \"Firstname\" : \"Jeremy\", \n    \"Lastname\" : \"Patrick\",\n    \"Street\" : \"Jeremy\", \n    \"City\" : \"Patrick\",\n    \"State\" : \"Jeremy\", \n    \"Zip\" : \"Patrick\"\n  }\n\n}",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "version": 2
+        }
+      ]
+    },
+    {
+      "id": "ee4c70a4-8007-0bff-04cb-9487bd533486",
+      "name": "Authentication",
+      "timestamp": 1451098589923,
+      "requests": [
+        {
+          "collectionId": "ee4c70a4-8007-0bff-04cb-9487bd533486",
+          "id": "b66501b8-3f3e-211d-39dc-0da4c463784a",
+          "name": "Login",
+          "description": "",
+          "url": "http://localhost/api/Authentication/Login",
+          "method": "POST",
+          "headers": "Content-Type: application/json\n",
+          "data": "{\n  \"Username\" : \"deptuser\", \n  \"Password\" : \"test\", \n}",
+          "dataMode": "raw",
+          "timestamp": 0,
+          "version": 2,
+          "time": 1451742738771
+        }
+      ]
+    }
+
+  ],
+  "environments": [ ],
+  "headerPresets": [ ],
+  "globals": [ ]
+}

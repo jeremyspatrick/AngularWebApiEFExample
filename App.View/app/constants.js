@@ -1,0 +1,4 @@
+var API_BASE_URL = "http://74.138.17.143/SINGLEAPP/api/"
+var DEFAULT_CACHE_TIMEOUT = 0;
+
+var OUTSIDE_PATHS = ['/'];

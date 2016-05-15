@@ -1,0 +1,205 @@
+﻿<div style="overflow-y:scroll;height:100%;">
+    <span ng-repeat="obj in generatedObjects track by $index" ><button ng-click="download(obj)">{{obj.moduleName}}</button></span>
+
+    <br />
+    <br />
+    <div ng-model="errors" ng-show="postmanErrors.length > 0">
+        postman errors: {{postmanErrors}}
+        <br /><br /><br /><br />
+    </div>
+  
+   
+
+    <textarea placeholder="PASTE POSTMAN JSON HERE" rows="5" style="width:1000px;" ng-model="postmanJSON"></textarea>
+    <button ng-click="importPostmanJSON(postmanJSON)">Import</button>
+
+
+    
+    <pre id="new-service" hidden="hidden"> 
+'use strict';
+angular.module('{{moduleName}}', []);
+angular.module('{{moduleName}}')
+    .factory('{{moduleName}}.service', ['$http', '$q', function ($http, $q) {
+        //Return an instance of our backend service
+        return function () {
+            var service = {}      //Reference to the service we will return
+        <div ng-repeat="method in methods">
+              var {{method.name}}Request = {
+                method: 'POST',
+                url: API_BASE_URL + '{{method.api}}',
+                data: { }
+            }
+
+        </div>            
+<div ng-repeat="method in methods">
+  
+            /**
+             * Fetch {{method.name}}
+             * @returns $http
+             */
+            service.{{method.name}} = function (options) {
+                var deferred = $q.defer();
+                {{method.name}}Request.data = options;
+                $http({{method.name}}Request).success(function (data) {
+                    deferred.resolve(data);
+                }).error(function (data, status, headers, config) {
+                    if (status === 401) {
+                        deferred.reject("Unauthorized");
+                    } else {
+                        deferred.reject(data);
+                    }
+                });
+                return deferred.promise;
+            }
+</div>
+            
+            return service;
+        }
+    }]);
+</pre>
+
+    <pre id="new-model" hidden="hidden">
+               
+'use strict';
+angular.module('{{moduleName}}')
+    .factory('{{moduleName}}.model', ['{{moduleName}}.baseModel', '$q', '$location', function ({{moduleName}}Base, $q, $location) {
+        var service = {};   //The backend service we will return
+        /**
+         * Creates instance
+         * @returns 
+         */
+        service.instance = function () {
+           var serviceInstance = {{moduleName}}Base.instance();
+            
+            /*
+                override model timeout here.  zero timeout turns off caching
+            */
+            
+                serviceInstance.modelTimeout = 0;
+            
+
+             /*
+                override methods here
+            */
+            /*
+            serviceInstance.exampleMethod = function (options) {
+                var promise = serviceInstance.base.exampleMethod(options);
+                promise.then(function (response) {
+                    //**********
+                    // insert override logic
+                    //**********
+                });
+                return promise;
+            }
+        
+            */
+
+            return serviceInstance;
+        }
+        service.shared = service.instance();    //Singleton used to share item among several controllers
+        return service;
+    }]);
+</pre>
+    <pre id="base-model" hidden="hidden"> 
+    
+'use strict';
+angular.module('{{moduleName}}')
+    .factory('{{moduleName}}.baseModel', ['{{moduleName}}.service', '$q', '$location', '$rootScope', '$timeout', function ({{moduleName}}, $q, $location, $rootScope, $timeout) {
+        var service = {};   //The backend service we will return
+        /**
+         * Creates instance
+         * @returns 
+         */
+        service.instance = function () {
+            var serviceInstance = {};
+            var _{{moduleName}} = {{moduleName}}();
+            
+            //model's data
+            serviceInstance.reset = function() {
+<div ng-repeat="method in methods"><span ng-if="(method.name).indexOf('get') != -1">                serviceInstance.{{(method.name).replace('get', '')}} = undefined;
+</span></div>
+            }
+            serviceInstance.reset();
+            
+            serviceInstance.modelTimeout = DEFAULT_CACHE_TIMEOUT;
+            var cacheExists = undefined;
+            //reset model after expiration
+            var setModelExpiration = function () {
+                if (angular.isUndefined(cacheExists) && angular.isDefined(serviceInstance.modelTimeout) && serviceInstance.modelTimeout != 0) {
+                    cacheExists = true;
+                    //destroy cache after default time
+                    $timeout(function() {
+                        serviceInstance.reset();
+                        cacheExists = undefined;
+                    }, serviceInstance.modelTimeout);
+                }
+            }
+
+            serviceInstance.base = {} //base methods
+    <div ng-repeat="method in methods">
+    <span ng-if="(method.name).indexOf('get') == -1">
+            /**
+             * 
+             * @returns 
+             */
+            serviceInstance.base.{{method.name}} = function (options) 
+            {
+                var promise = _{{moduleName}}.{{method.name}}(options);
+                promise.then(function (response) {
+ 
+                }, function (errorMessage) {
+           
+                });
+                return promise;
+            }
+            </span> 
+    <span ng-if="(method.name).indexOf('get') != -1">
+             
+        
+            /**
+             * 
+             * @returns 
+             */
+            serviceInstance.base.{{method.name}} = function (options, force) 
+            {
+                var deferred = $q.defer();
+                if (angular.isUndefined(serviceInstance.{{(method.name).replace('get', '')}}) || (angular.isDefined(force) && force) || (angular.isUndefined(serviceInstance.modelTimeout) || serviceInstance.modelTimeout == 0)) {
+                    setModelExpiration();
+                    var promise = _{{moduleName}}.{{method.name}}(options);
+                    promise.then(function (response) {
+                        if(angular.isUndefined(response))
+                            response = [];
+                        serviceInstance.{{(method.name).replace('get', '')}} = response;
+                        deferred.resolve(serviceInstance.{{(method.name).replace('get', '')}});
+                    }, function (error) {
+                        deferred.reject(error);
+                    });
+                    return deferred.promise;
+                }
+                else {
+                    deferred.resolve(serviceInstance.{{(method.name).replace('get', '')}});
+                    return deferred.promise;
+                }
+             }
+                </span> 
+        </div> 
+            
+            /*
+                add methods that were not overridden
+            */
+            var addMethods = function () {
+                for (var prop in serviceInstance.base) {
+                    if (serviceInstance.base.hasOwnProperty(prop) && typeof serviceInstance[prop] === 'undefined') {
+                        serviceInstance[prop] = serviceInstance.base[prop];
+                    }
+                }
+            }
+            addMethods();
+
+            return serviceInstance;
+        }
+        service.shared = service.instance();    //Singleton used to share item among several controllers
+        return service;
+    }]);
+</pre>
+</div>

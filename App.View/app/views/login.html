@@ -1,0 +1,25 @@
+<div class="pad">
+	<div class="wide text-center mar-top mar-bot">
+		<img src="app/assets/img/logo.jpg" class="wide" style="max-width:300px;">
+	</div>
+
+	<form name="formLogin" method="post" class="panel panel-default mar-auto" style="max-width:350px;">
+		<div class="panel-heading">Login</div>
+		<div class="panel-body">				
+				<div class="form-group">
+					<label for="email">Username</label>
+					<input type="text" class="form-control" id="email" placeholder="" ng-model="Credentials.Username">
+				</div>
+
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" id="password" placeholder="" ng-model="Credentials.Password">
+				</div>	
+
+					
+		</div>
+		<div class="panel-footer">
+			<button type="submit" class="btn btn-primary btn-block" ng-click="SignIn(Credentials)">Sign In</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>example app</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" href="app/assets/css/bootstrap.css"/>        
+        <link rel="stylesheet" href="app/assets/css/custom.css" />     
+        <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.4.57/css/materialdesignicons.min.css">
+        <!--[if lt IE 9]>
+            <script src="scripts/vendor/es5-shim.min.js"></script>
+            <script src="scripts/vendor/json3.min.js"></script>
+        <![endif]-->
+        
+    </head>
+    <body ng-app="SINGLEAPP" ng-style="!$root.outside && {'padding-top': '50px'}">
+
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outasdfdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+        
+        <!-- Add your site or application content here -->
+        <div ng-if="!$root.outside">
+            <div ng-include="'app/views/navbar-top.html'"></div>
+            <div ng-include="'app/views/drawer-right.html'"></div>
+        </div>        
+
+        <div ng-view></div>        
+
+
+        <script src="app/lib/underscore.js"></script>
+        <script src="app/lib/angular/angular.min.js"></script>
+		<script src="app/lib/angular/angular-route.js"></script>
+        <script src="app/lib/angular/angular-animate.js"></script>
+        <script src="app/assets/js/ui-bootstrap-tpls-0.14.3.js"></script>
+
+        <script src="app/constants.js"></script>
+
+        <script src="app/fakedata.js"></script>
+        <script src="app/override.js"></script>
+
+		
+
+        <script src="app/ng-app.js"></script>
+        <script src="app/routes.js"></script>
+        <script src="app/interceptor.js"></script> 
+
+        
+
+        <!-- Authentication Module -->
+        <script src="app/modules/authentication/_authenticationServiceBase.js"></script>
+        <script src="app/modules/authentication/_authenticationModelBase.js"></script>
+        <script src="app/modules/authentication/authenticationModel.js"></script>
+
+      
+
+        <!-- Directives -->
+        <script src="app/directives/hasRole.js"></script>
+        <!-- Has Roles Module-->
+        <script src="app/modules/hasRoles/hasRolesModule.js"></script>
+
+
+        <script src="app/views/login.js"></script>
+       
+        <script src="app/views/drawer-right.js"></script>
+      
+        <script src="app/views/navbar-top.js"></script>
+       
+        <script src="app/views/generator.js"></script>
+        <!-- endbuild -->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
